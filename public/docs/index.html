@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Tells the browser this is an HTML page written in UTF-8 text -->
+  <meta charset="UTF-8">
+
+  <!-- Makes the page fit phone screens properly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- The title shown in the browser tab -->
+  <title>St. Mugaga Secondary School | Jalamba</title>
+
+  <!-- Load the stylesheet we wrote earlier -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- The navigation bar. common.js fills this in. -->
+  <div id="site-header"></div>
+
+    <!-- ===== AUTO-SLIDING HERO ===== -->
+  <section class="slider" id="hero-slider" aria-label="Featured highlights">
+
+    <div class="slides">
+
+      <!-- Slide 1: welcome -->
+      <div class="slide active" style="background-image: url('IMG/camera.jpg');">
+        <div class="slide-content">
+          <h1>Welcome to St. Mugaga Secondary School</h1>
+          <p>A community committed to learning, character, and helping every student reach their potential.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-light" href="admissions.html">Explore admissions</a>
+            <a class="btn btn-outline-light" href="apply.html">Apply online</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: subjects -->
+      <div class="slide" style="background-image: url('IMG/');">
+        <div class="slide-content">
+          <h1>Subjects from O Level to A Level</h1>
+          <p>Strong foundations in core subjects, with a wide choice of A Level combinations for every learner.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-light" href="subjects.html">View subjects</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: admissions -->
+      <div class="slide" style="background-image: url('IMG/camera.jpg');">
+        <div class="slide-content">
+          <h1>Admissions are open</h1>
+          <p>Apply online in minutes and upload your passport photo from home.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-light" href="apply.html">Apply now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: school life -->
+      <div class="slide" style="background-image: url('IMG/camera.jpg');">
+        <div class="slide-content">
+          <h1>Life at St. Mugaga</h1>
+          <p>Science labs, a library, sports, and a community that helps every student grow in confidence.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-light" href="school-life.html">Discover school life</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Arrow buttons. The "‹" and "›" symbols are the left and right arrows. -->
+    <button class="slider-btn prev" aria-label="Previous slide">‹</button>
+    <button class="slider-btn next" aria-label="Next slide">›</button>
+
+    <!-- The dots are created by slider.js -->
+    <div class="slider-dots"></div>
+
+  </section>
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container">
+
+    <!-- Three cards that link to other pages -->
+    <div class="grid">
+      <a class="card" href="subjects.html" style="text-decoration: none; color: inherit;">
+        <h3>Learning</h3>
+        <p>Explore the subjects offered from O Level to A Level.</p>
+      </a>
+
+      <a class="card" href="admissions.html" style="text-decoration: none; color: inherit;">
+        <h3>Admissions</h3>
+        <p>Find out how to apply and what we need from you.</p>
+      </a>
+
+      <a class="card" href="school-life.html" style="text-decoration: none; color: inherit;">
+        <h3>School community</h3>
+        <p>Facilities, events, and life at St. Mugaga.</p>
+      </a>
+    </div>
+
+    <!-- Latest news heading -->
+    <h2 class="section-title" style="margin-top: 40px;">Latest news</h2>
+
+    <!-- home.js will fill this box with posts from the database -->
+    <div class="grid" id="news-list">
+      <p>Loading news...</p>
+    </div>
+
+  </main>
+
+  <!-- The footer. common.js fills this in. -->
+  <div id="site-footer"></div>
+  <p>designed by MATOVU JOVAN</p>
+  <P>CONTACT INFO:0743901225</P>
+
+  <!-- Load the shared script first, then the home page script -->
+  
+    <script src="js/common.js"></script>
+  <script src="js/slider.js"></script>
+  <script src="js/home.js"></script>
+
+</body>
+</html>
