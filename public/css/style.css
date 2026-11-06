@@ -1,0 +1,530 @@
+/* Colors used across the whole site */
+:root {
+  --navy: #1b2f5b;
+  --gold: #e0a526;
+  --cream: #fdf8e8;
+  --text: #222;
+  --muted: #666;
+  --red: #c0392b;
+  --green: #1e8449;
+}
+
+/* Reset default browser spacing so layouts behave the same everywhere */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Keeps hidden elements hidden, even if other CSS tries to show them */
+[hidden] { display: none !important; }
+
+body {
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  
+}
+
+a { color: var(--navy); }
+
+/* ---------- Navigation bar ---------- */
+.navbar {
+  background: var(--navy);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 12px 20px;
+  position: sticky;   /* stays at the top when you scroll */
+  top: 0;
+  z-index: 10;        /* keeps it above other content */
+}
+
+.brand { color: #fff; text-decoration: none; font-weight: 700; font-size: 1.1rem; }
+
+.nav-links { list-style: none; display: flex; gap: 18px; flex-wrap: wrap; }
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+}
+.nav-links a.active,
+.nav-links a:hover { border-color: var(--gold); }
+
+.menu-toggle {
+  display: none;      /* hidden on desktop */
+  background: none;
+  border: 0;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* On phones: show the menu button and stack the links */
+@media (max-width: 760px) {
+  .menu-toggle { display: block; }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .nav-links.open { display: flex; }
+}
+
+/* ---------- Hero (the large top section on the home page) ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* two equal columns on desktop */
+  gap: 30px;
+  align-items: center;
+  background: var(--cream);
+  padding: 60px 8%;
+}
+.hero h1 { color: var(--navy); font-size: 2.2rem; margin-bottom: 12px; }
+.hero-buttons { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+
+.hero-image {
+  background-image: url('../IMG/camera.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  
+  border-radius: 12px;
+  min-height: 260px;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.hero-caption {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 14px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; padding: 30px 5%; }  /* stack on phones */
+  .hero h1 { font-size: 1.7rem; }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 2px solid var(--navy);
+  background: #fff;
+  color: var(--navy);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.95rem;
+}
+.btn-primary { background: var(--navy); color: #fff; }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ---------- Page layout ---------- */
+.container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+.section-title { color: var(--navy); margin-bottom: 12px; }
+.muted { color: var(--muted); }
+
+/* Cards wrap onto new rows as the screen gets smaller */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+.level-block { margin-bottom: 30px; }
+
+/* ---------- Cards ---------- */
+.card {
+  background:greenyellow;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.card h3 { color: var(--navy); margin-bottom: 6px; }
+.card img { width: 100%; border-radius: 8px; margin-bottom: 10px; }
+.post-body { white-space: pre-line; margin: 8px 0; }   /* keeps line breaks from the database */
+
+.tag {
+  display: inline-block;
+  background: var(--cream);
+  border: 1px solid var(--gold);
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-right: 4px;
+}
+.tag.ok { background: #e6f4ea; border-color: var(--green); }
+
+/* ---------- Forms ---------- */
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* two fields side by side */
+  gap: 16px;
+  background: var(--cream);
+  padding: 24px;
+  border-radius: 10px;
+}
+.form .full { grid-column: 1 / -1; }   /* spans both columns */
+
+label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font: inherit;
+  background: #fff;
+}
+textarea { min-height: 100px; }
+
+.alert { padding: 10px 14px; border-radius: 6px; margin: 12px 0; }
+.alert.success { background: #e6f4ea; color: var(--green); }
+.alert.error { background: #fdecea; color: var(--red); }
+
+/* ---------- Footer ---------- */
+footer {
+  background: var(--navy);
+  color: #fff;
+  text-align: center;
+  padding: 24px;
+  margin-top: 40px;
+}
+footer a { color: var(--gold); }
+
+@media (max-width: 600px) {
+  .form { grid-template-columns: 1fr; }   /* one column on phones */
+}
+
+/* ---------- Admin portal ---------- */
+.admin-header {
+  background: var(--navy);
+  color: #fff;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.admin-header button {
+  background: var(--gold);
+  border: 0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 20px 0; }
+.tab-btn {
+  padding: 8px 14px;
+  border: 1px solid var(--navy);
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.tab-btn.active { background: var(--navy); color: #fff; }
+
+/* Only the active tab panel is visible */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.panel-box {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.row-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+.row-actions { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.row-actions button {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--navy);
+  background: #fff;
+  cursor: pointer;
+}
+.row-actions button.danger { border-color: var(--red); color: var(--red); }
+
+/* ---------- Login page ---------- */
+.login-wrap {
+  min-height: 100vh;             /* full screen height */
+  display: flex;
+  align-items: center;           /* centers vertically */
+  justify-content: center;       /* centers horizontally */
+  background: var(--cream);
+  padding: 20px;
+}
+.login-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.login-box .form {
+  grid-template-columns: 1fr;
+  background: none;
+  padding: 0;
+}
+
+/* ---------- Report card ---------- */
+.report {
+  background: #fff;
+  padding: 24px;
+  border: 2px solid var(--navy);
+  margin-top: 16px;
+}
+.report-head { text-align: center; margin-bottom: 12px; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+th, td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; }
+.signatures { display: flex; justify-content: space-between; margin-top: 40px; gap: 20px; }
+
+/* When printing: hide everything except the report card */
+@media print {
+  body * { visibility: hidden; }
+  #printable, #printable * { visibility: visible; }
+  #printable { position: absolute; left: 0; top: 0; width: 100%; border: 0; }
+  .no-print { display: none !important; }
+}
+/* ===== AUTO-SLIDING HERO ===== */
+
+.slider {
+  position: relative;
+  height: 480px;
+  overflow: hidden;
+  background: var(--navy);   /* shows if a photo is missing */
+}
+
+/* All slides sit on top of each other. Only the active one is visible. */
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  background-color: var(--navy);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;   /* the fade between slides */
+}
+
+.slide.active { opacity: 1; }
+
+/* A dark blue overlay makes the white text easy to read over any photo */
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(27, 47, 91, 0.92) 0%, rgba(27, 47, 91, 0.45) 100%);
+}
+
+.slide-content {
+  position: relative;   /* sits above the overlay */
+  color: #fff;
+  max-width: 620px;
+  padding: 0 8%;
+}
+.slide-content h1 {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  color: #fff;
+}
+.slide-content p {
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+}
+
+.btn-light { background: #fff; color: var(--navy); border-color: #fff; }
+.btn-outline-light { background: transparent; color: #fff; border-color: #fff; }
+
+/* Arrow buttons */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slider-btn:hover { background: var(--gold); }
+.slider-btn.prev { left: 12px; }
+.slider-btn.next { right: 12px; }
+
+/* Dots at the bottom */
+.slider-dots {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.slider-dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+.slider-dots button.active { background: var(--gold); }
+
+/* Phones: shorter banner, smaller heading, smaller arrows */
+@media (max-width: 760px) {
+  .slider { height: 520px; }
+  .slide-content h1 { font-size: 1.7rem; }
+  .slide-content { padding: 0 6%; }
+  .slider-btn { width: 36px; height: 36px; font-size: 1.4rem; }
+}
+.card1{
+  background-color: #c0392b;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.card2{
+  background-color: chocolate;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.card3{
+  background-color: pink;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}.card4{
+  background-color: mediumpurple;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}.card5{
+  background-color: yellowgreen;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}.card6{
+  background-color: var(--red);
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+/* ===== REPORT CARDS (O Level and A Level) ===== */
+.rc { font-size: 12px; }
+.rc h4 { margin: 14px 0 6px; color: var(--navy); font-size: 13px; }
+
+/* Top of the card: logo, school name, and photo */
+.rc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: 8px;
+}
+.rc-school { flex: 1; text-align: center; }
+.rc-school h2 { font-size: 16px; color: var(--navy); }
+.rc-school h3 { font-size: 14px; margin-top: 4px; }
+.rc-school p { margin: 2px 0; }
+.rc-term { font-weight: 600; }
+
+/* Placeholder box for the logo, until the real logo is added */
+.logo-slot {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  border: 1px dashed #999;
+  color: #888;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Used once the real logo file is added */
+.school-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Student details and attendance */
+.rc-info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+.rc-info { flex: 1; min-width: 260px; }
+.rc-info td { border: none; padding: 2px 4px; }
+.rc-att { width: 200px; }
+.rc-att th { background: #b03a2e; color: #fff; text-align: left; }
+
+/* Mark tables */
+.rc-table th { background: #f3f3f3; font-size: 11px; }
+.rc-table td { vertical-align: top; }
+.rc-table td.num { text-align: center; }
+.rc-table td.grade { text-align: center; font-weight: 700; }
+
+/* Key and grading scale */
+.rc-key { margin: 8px 0; }
+.rc-key-table { width: auto; margin: 6px 0; }
+.rc-key-table th,
+.rc-key-table td { text-align: center; padding: 4px 10px; }
+
+/* Comments and fees */
+.rc-comments td { vertical-align: top; }
+.rc-fees th { background: #f3f3f3; font-size: 11px; }
+
+@media print {
+  @page { size: A4; margin: 10mm; }
+  .rc { font-size: 11px; }
+}

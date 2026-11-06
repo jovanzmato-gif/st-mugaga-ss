@@ -1,0 +1,22 @@
+# Sensitive files
+.env
+config/db.php
+**/config.php
+**/database.php
+
+# Uploaded files
+public/uploads/
+uploads/
+storage/
+
+# Dependencies & cache
+vendor/
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp

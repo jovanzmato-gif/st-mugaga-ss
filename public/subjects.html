@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Tells the browser this is an HTML page written in UTF-8 text -->
+  <meta charset="UTF-8">
+
+  <!-- Makes the page fit phone screens properly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- The title shown in the browser tab -->
+  <title>Subjects | St. Mugaga Secondary School</title>
+
+  <!-- Load the shared stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- The navigation bar. common.js fills this in. -->
+  <div id="site-header"></div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container">
+
+    <h1 class="section-title">Subjects we teach</h1>
+    <p class="muted">From Senior One (S1) to Senior Six (S6), students study both O Level and A Level subjects.</p>
+
+    <!-- subjects.js will fill this area with subject cards from the database -->
+    <div id="subjects" style="margin-top: 20px;">
+      <p>Loading subjects...</p>
+    </div>
+
+  </main>
+
+  <!-- The footer. common.js fills this in. -->
+  <div id="site-footer"></div>
+
+  <!-- Load the shared script first, then the subjects page script -->
+  <script src="js/common.js"></script>
+  <script src="js/subjects.js"></script>
+
+</body>
+</html>

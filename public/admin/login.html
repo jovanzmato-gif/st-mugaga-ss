@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Tells the browser this is an HTML page written in UTF-8 text -->
+  <meta charset="UTF-8">
+
+  <!-- Makes the page fit phone screens properly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- The title shown in the browser tab -->
+  <title>Admin Login | St. Mugaga SS</title>
+
+  <!--
+    This file lives in public/admin/, one folder deeper than the public pages.
+    So the path to the stylesheet starts with "../" to go up one level first.
+    "../css/style.css" means: go up to public/, then into css/.
+  -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- Full-screen wrapper that centers the login box -->
+  <div class="login-wrap">
+
+    <div class="login-box">
+
+      <h1 class="section-title">Admin Portal</h1>
+      <p class="muted" style="margin-bottom: 16px;">St. Mugaga Secondary School</p>
+
+      <!-- The login form. The "form" class gives it spacing from style.css. -->
+      <form id="login-form" class="form">
+
+        <!-- Username -->
+        <div class="full">
+          <label for="username">Username</label>
+          <input id="username" name="username" required autocomplete="username">
+        </div>
+
+        <!-- Password. type="password" hides the characters as they're typed. -->
+        <div class="full">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required
+            autocomplete="current-password">
+        </div>
+
+        <!-- Login button, stretched to the full width of the box -->
+        <div class="full">
+          <button class="btn btn-primary" type="submit" style="width: 100%;">Log in</button>
+        </div>
+
+        <!-- Error messages appear here, for example "Invalid username or password" -->
+        <div class="full" id="login-message"></div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <!-- Load the login script. Note the "../" path, because we're inside admin/. -->
+  <script src="../js/login.js"></script>
+
+</body>
+</html>

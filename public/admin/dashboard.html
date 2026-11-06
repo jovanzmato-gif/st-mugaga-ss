@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Tells the browser this is an HTML page written in UTF-8 text -->
+  <meta charset="UTF-8">
+
+  <!-- Makes the page fit phone screens properly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- The title shown in the browser tab -->
+  <title>Admin Dashboard | St. Mugaga SS</title>
+
+  <!-- This file is in public/admin/, so "../" goes up one folder to reach css/ -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ===== TOP BAR ===== -->
+  <header class="admin-header">
+    <strong>St. Mugaga SS: Admin Portal</strong>
+    <button id="logout-btn">Logout</button>
+  </header>
+
+  <main class="container">
+
+    <!-- ===== TAB BUTTONS =====
+         Each button has a data-tab attribute that names the panel it opens.
+         dashboard.js uses that name to show the right panel. -->
+    <nav class="tabs no-print">
+      <button class="tab-btn active" data-tab="tab-posts">Posts</button>
+      <button class="tab-btn" data-tab="tab-applications">Applications</button>
+      <button class="tab-btn" data-tab="tab-results">Enter results</button>
+      <button class="tab-btn" data-tab="tab-reports">Reports and printing</button>
+    </nav>
+
+    <!-- ===== PANEL 1: POSTS ===== -->
+    <section id="tab-posts" class="tab-panel active">
+
+      <!-- Form for creating a new post -->
+      <div class="panel-box">
+        <h2 class="section-title">New post</h2>
+
+        <form id="post-form" class="form">
+
+          <div>
+            <label for="title">Title</label>
+            <input id="title" name="title" required>
+          </div>
+
+          <div>
+            <label for="category">Category</label>
+            <select id="category" name="category">
+              <option value="news">News</option>
+              <option value="event">Event</option>
+              <option value="announcement">Announcement</option>
+            </select>
+          </div>
+
+          <div class="full">
+            <label for="body">Body</label>
+            <textarea id="body" name="body" required></textarea>
+          </div>
+
+          <div>
+            <label for="image">Image (optional)</label>
+            <input id="image" type="file" name="image" accept="image/*">
+          </div>
+
+          <div>
+            <label for="is_published">Visibility</label>
+            <select id="is_published" name="is_published">
+              <option value="1">Publish now</option>
+              <option value="0">Save as hidden</option>
+            </select>
+          </div>
+
+          <div class="full">
+            <button class="btn btn-primary" type="submit">Save post</button>
+            <span id="post-msg"></span>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- List of existing posts. dashboard.js fills this in. -->
+      <div class="panel-box">
+        <h2 class="section-title">All posts</h2>
+        <div id="posts-list"></div>
+      </div>
+
+    </section>
+
+    <!-- ===== PANEL 2: APPLICATIONS ===== -->
+    <section id="tab-applications" class="tab-panel">
+      <div class="panel-box">
+        <h2 class="section-title">Online applications</h2>
+        <!-- dashboard.js fills this in with the list of applications -->
+        <div id="applications-list"></div>
+      </div>
+    </section>
+
+      <!-- ===== PANEL 3: ENTER RESULTS ===== -->
+    <section id="tab-results" class="tab-panel">
+
+      <!-- 1. Find the student -->
+      <div class="panel-box">
+        <h2 class="section-title">1. Find student</h2>
+        <div class="form">
+          <div>
+            <label for="res-search">Name or admission number</label>
+            <input id="res-search" placeholder="e.g. Nakato">
+          </div>
+          <div>
+            <label for="res-class">Class</label>
+            <select id="res-class" class="class-select"></select>
+          </div>
+          <div class="full">
+            <button class="btn btn-primary" id="res-search-btn">Search</button>
+          </div>
+        </div>
+        <div id="res-students" style="margin-top: 12px;"></div>
+      </div>
+
+      <!-- Everything below appears after a student is selected -->
+      <div id="res-entry" hidden>
+
+        <!-- 2. Term and year -->
+        <div class="panel-box">
+          <h2 class="section-title">2. Term and year for <span id="res-selected"></span></h2>
+          <div class="form">
+            <div>
+              <label for="res-term">Term</label>
+              <select id="res-term">
+                <option>Term 1</option>
+                <option>Term 2</option>
+                <option>Term 3</option>
+              </select>
+            </div>
+            <div>
+              <label for="res-year">Year</label>
+              <input id="res-year" type="number" value="2026">
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Student details -->
+        <div class="panel-box">
+          <h2 class="section-title">Student details (shown on the report card)</h2>
+          <form id="student-form" class="form">
+            <div>
+              <label for="stu-lin">LIN</label>
+              <input id="stu-lin" name="lin" placeholder="e.g. U0001">
+            </div>
+            <div>
+              <label for="stu-stream">Stream</label>
+              <input id="stu-stream" name="stream" placeholder="e.g. Red">
+            </div>
+            <div class="full">
+              <label for="stu-house">House</label>
+              <input id="stu-house" name="house">
+            </div>
+            <div class="full">
+              <button class="btn btn-primary" type="submit">Save student details</button>
+              <span id="student-msg"></span>
+            </div>
+          </form>
+        </div>
+
+        <!-- 4. Term details -->
+        <div class="panel-box">
+          <h2 class="section-title">Term details</h2>
+          <form id="term-form" class="form">
+            <div>
+              <label for="days_present">Days present</label>
+              <input id="days_present" name="days_present" type="number" min="0">
+            </div>
+            <div>
+              <label for="days_absent">Days absent</label>
+              <input id="days_absent" name="days_absent" type="number" min="0">
+            </div>
+            <div>
+              <label for="term_ended_on">Term ended on</label>
+              <input id="term_ended_on" name="term_ended_on" type="date">
+            </div>
+            <div>
+              <label for="next_term_begins">Next term begins</label>
+              <input id="next_term_begins" name="next_term_begins" type="date">
+            </div>
+            <div>
+              <label for="fees_balance">Fees balance (UGX)</label>
+              <input id="fees_balance" name="fees_balance" type="number" min="0">
+            </div>
+            <div>
+              <label for="fees_next_term">Fees next term (UGX)</label>
+              <input id="fees_next_term" name="fees_next_term" type="number" min="0">
+            </div>
+            <div class="full">
+              <label for="class_teacher_comment">Class teacher's comment</label>
+              <textarea id="class_teacher_comment" name="class_teacher_comment"></textarea>
+            </div>
+            <div class="full">
+              <label for="headteacher_comment">Headteacher's comment</label>
+              <textarea id="headteacher_comment" name="headteacher_comment"></textarea>
+            </div>
+            <div>
+              <label for="project_title">Project title</label>
+              <input id="project_title" name="project_title">
+            </div>
+            <div>
+              <label for="project_score">Project score (out of 10)</label>
+              <input id="project_score" name="project_score" type="number" min="0" max="10" step="0.1">
+            </div>
+            <div>
+              <label for="project_grade">Project grade</label>
+              <input id="project_grade" name="project_grade">
+            </div>
+            <div>
+              <label for="project_remark">Project remark</label>
+              <input id="project_remark" name="project_remark">
+            </div>
+            <div class="full">
+              <label for="project_teacher">Project teacher</label>
+              <input id="project_teacher" name="project_teacher">
+            </div>
+            <div class="full">
+              <button class="btn btn-primary" type="submit">Save term details</button>
+              <span id="term-msg"></span>
+            </div>
+          </form>
+        </div>
+
+        <!-- 5. Subject marks: the fields change with the student's class -->
+        <div class="panel-box">
+          <h2 class="section-title">Subject marks</h2>
+          <form id="subject-form" class="form">
+
+            <div class="full">
+              <label for="res-subject">Subject</label>
+              <select id="res-subject" name="subject_id" required></select>
+            </div>
+
+            <!-- O Level (S1 to S4): topics scored 0 to 3 -->
+            <div id="o-level-fields" class="full" hidden>
+              <label>Topics and scores (0 to 3)</label>
+              <div id="topic-rows"></div>
+              <button type="button" id="add-topic" class="btn" style="margin: 8px 0;">Add topic</button>
+              <label for="generic_skills">Generic skills</label>
+              <input id="generic_skills" name="generic_skills" placeholder="e.g. Teamwork, critical thinking">
+            </div>
+
+            <!-- A Level (S5 and S6): formative scores and end of term exam -->
+            <div id="a-level-fields" class="full" hidden>
+              <div class="form" style="padding: 0; background: none;">
+                <div>
+                  <label for="formative_1">Formative 1 (0 to 3)</label>
+                  <input id="formative_1" name="formative_1" type="number" min="0" max="3" step="0.1">
+                </div>
+                <div>
+                  <label for="formative_2">Formative 2 (0 to 3)</label>
+                  <input id="formative_2" name="formative_2" type="number" min="0" max="3" step="0.1">
+                </div>
+                <div>
+                  <label for="formative_3">Formative 3 (0 to 3)</label>
+                  <input id="formative_3" name="formative_3" type="number" min="0" max="3" step="0.1">
+                </div>
+                <div>
+                  <label for="eot_score">End of term score (0 to 100)</label>
+                  <input id="eot_score" name="eot_score" type="number" min="0" max="100" step="0.1">
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label for="teacher_name">Teacher</label>
+              <input id="teacher_name" name="teacher_name">
+            </div>
+            <div>
+              <label for="remark">Remark</label>
+              <input id="remark" name="remark">
+            </div>
+
+            <div class="full">
+              <button class="btn btn-primary" type="submit">Save subject</button>
+              <span id="subject-msg"></span>
+            </div>
+          </form>
+
+          <div id="entries-list" style="margin-top: 16px;"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== PANEL 4: REPORTS ===== -->
+    <section id="tab-reports" class="tab-panel">
+
+      <!-- no-print hides this search area when the report is printed -->
+      <div class="panel-box no-print">
+        <h2 class="section-title">Select student</h2>
+
+        <div class="form">
+          <div>
+            <label for="rep-search">Student name</label>
+            <input id="rep-search">
+          </div>
+
+          <div>
+            <label for="rep-class">Class</label>
+            <select id="rep-class" class="class-select"></select>
+          </div>
+
+          <div>
+            <label for="rep-term">Term</label>
+            <select id="rep-term">
+              <option>Term 1</option>
+              <option>Term 2</option>
+              <option>Term 3</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="rep-year">Year</label>
+            <input id="rep-year" type="number" value="2026">
+          </div>
+
+          <div class="full">
+            <button class="btn btn-primary" id="rep-search-btn">Find student</button>
+          </div>
+        </div>
+
+        <div id="rep-students" style="margin-top: 12px;"></div>
+      </div>
+
+      <!-- The printable report card appears here -->
+      <div id="report-area"></div>
+
+    </section>
+
+  </main>
+
+  <!--
+    Script order matters:
+    1. common.js gives us escapeHtml, formatDate, and api.
+    2. admin-common.js gives us requireLogin, logout, and adminApi.
+    3. dashboard.js uses both of the above, so it loads last.
+  -->
+  <script src="../js/common.js"></script>
+  <script src="../js/admin-common.js"></script>
+  <script src="../js/dashboard.js"></script>
+
+</body>
+</html>

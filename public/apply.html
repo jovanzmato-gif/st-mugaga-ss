@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Application | St. Mugaga Secondary School</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container">
+    <h1 class="section-title">Online Application</h1>
+    <p class="muted">Choose the applicant type, then complete the form and upload the documents.</p>
+
+    <form id="apply-form" class="form" enctype="multipart/form-data" style="margin-top: 20px;">
+
+      <!-- ===== APPLICANT TYPE ===== -->
+      <div class="full">
+        <label for="applicant_type">Applicant type</label>
+        <select id="applicant_type" name="applicant_type" required>
+          <option value="primary_leaver">New student: completed Primary Seven</option>
+          <option value="transfer">Transfer: coming from another secondary school</option>
+        </select>
+      </div>
+
+      <!-- ===== STUDENT DETAILS (everyone) ===== -->
+      <div class="full">
+        <label for="student_full_name">Student full name</label>
+        <input id="student_full_name" name="student_full_name" required>
+      </div>
+
+      <div>
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+          <option value="">Choose...</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="date_of_birth">Date of birth</label>
+        <input id="date_of_birth" type="date" name="date_of_birth" required>
+      </div>
+
+      <div>
+        <label for="parent_contact">Parent or guardian contact</label>
+        <input id="parent_contact" type="tel" name="parent_contact" placeholder="e.g. 0770 000 000" required>
+      </div>
+
+      <div>
+        <label for="desired_class_id">Desired class</label>
+        <select id="desired_class_id" name="desired_class_id" required>
+          <option value="">Choose...</option>
+        </select>
+      </div>
+
+      <div class="full">
+        <label for="previous_school">Previous school</label>
+        <input id="previous_school" name="previous_school" required
+          placeholder="Name of the primary or secondary school">
+      </div>
+
+      <!-- ===== NEW STUDENTS ONLY (hidden when Transfer is chosen) ===== -->
+      <div id="primary-fields" class="full form" style="padding: 0; background: none;">
+        <div>
+          <label for="ple_aggregates">PLE aggregates</label>
+          <input id="ple_aggregates" type="number" name="ple_aggregates" min="4" max="36">
+        </div>
+        <div>
+          <label for="ple_slip">PLE result slip (photo)</label>
+          <input id="ple_slip" type="file" name="ple_slip" data-required="true"
+            accept="image/jpeg,image/png,image/webp">
+        </div>
+      </div>
+
+      <!-- ===== TRANSFER STUDENTS ONLY (hidden when New student is chosen) ===== -->
+      <div id="transfer-fields" class="full form" style="padding: 0; background: none;" hidden>
+        <div>
+          <label for="previous_class">Class at previous school</label>
+          <select id="previous_class" name="previous_class" data-required="true">
+            <option value="">Choose...</option>
+          </select>
+        </div>
+        <div>
+          <label for="reason_for_transfer">Reason for transfer</label>
+          <input id="reason_for_transfer" name="reason_for_transfer" data-required="true"
+            placeholder="e.g. Family relocated to Jalamba">
+        </div>
+        <div>
+          <label for="transfer_letter">Transfer letter (photo)</label>
+          <input id="transfer_letter" type="file" name="transfer_letter" data-required="true"
+            accept="image/jpeg,image/png,image/webp">
+        </div>
+        <div>
+          <label for="previous_report">Latest report card (photo)</label>
+          <input id="previous_report" type="file" name="previous_report" data-required="true"
+            accept="image/jpeg,image/png,image/webp">
+        </div>
+      </div>
+
+      <!-- ===== DOCUMENTS (everyone) ===== -->
+      <div>
+        <label for="birth_certificate">Birth certificate (photo)</label>
+        <input id="birth_certificate" type="file" name="birth_certificate" required
+          accept="image/jpeg,image/png,image/webp">
+      </div>
+
+      <div>
+        <label for="passport_photo">Student passport photo</label>
+        <input id="passport_photo" type="file" name="passport_photo" required
+          accept="image/jpeg,image/png,image/webp">
+      </div>
+
+      <div class="full muted" style="font-size: 0.85rem;">
+        Each document must be a JPG, PNG, or WEBP photo, up to 5 MB.
+      </div>
+
+      <div class="full">
+        <button class="btn btn-primary" type="submit">Submit application</button>
+      </div>
+
+      <div class="full" id="form-message"></div>
+
+    </form>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/common.js"></script>
+  <script src="js/apply.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Tells the browser this is an HTML page written in UTF-8 text -->
+  <meta charset="UTF-8">
+
+  <!-- Makes the page fit phone screens properly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- The title shown in the browser tab -->
+  <title>School Life | St. Mugaga Secondary School</title>
+
+  <!-- Load the shared stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- The navigation bar. common.js fills this in. -->
+  <div id="site-header"></div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container">
+
+    <h1 class="section-title">School Life</h1>
+    <p class="muted">Facilities and activities that make St. Mugaga a place to grow.</p>
+
+    <!-- ===== FACILITIES (written directly in HTML) ===== -->
+    <h2 class="section-title" style="margin-top: 30px;">Facilities</h2>
+
+    <div class="grid">
+      <div class="card1">
+        <h3>Classrooms</h3>
+        <p>Bright, well-equipped classrooms for every class.</p>
+      </div>
+
+      <div class="card2">
+        <h3>Science laboratories</h3>
+        <p>Hands-on practicals in Biology, Chemistry, and Physics.</p>
+      </div>
+
+      <div class="card3">
+        <h3>Library</h3>
+        <p>A quiet space for reading, research, and revision.</p>
+      </div>
+
+      <div class="card4">
+        <h3>Computer lab</h3>
+        <p>Computer Studies and digital skills training.</p>
+      </div>
+
+      <div class="card5">
+        <h3>Sports ground</h3>
+        <p>Football, netball, athletics, and more.</p>
+      </div>
+
+      <div class="card6">
+        <h3>Clean water and sanitation</h3>
+        <p>Safe water and clean facilities for students.</p>
+      </div>
+    </div>
+
+    <!-- Reminder: this list should match the school's real facilities -->
+    <p class="muted" style="margin-top: 10px;">
+      Edit this list in school-life.html to match the school's real facilities.
+    </p>
+
+    <!-- ===== EVENTS (loaded from the database) ===== -->
+    <h2 class="section-title" style="margin-top: 40px;">Upcoming events</h2>
+
+    <!-- school-life.js will fill this box with event posts -->
+    <div class="grid" id="events">
+      <p>Loading events...</p>
+    </div>
+
+  </main>
+
+  <!-- The footer. common.js fills this in. -->
+  <div id="site-footer"></div>
+
+  <!-- Load the shared script first, then the page script -->
+  <script src="js/common.js"></script>
+  <script src="js/school-life.js"></script>
+
+</body>
+</html>
